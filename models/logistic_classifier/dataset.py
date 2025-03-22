@@ -1,10 +1,11 @@
 import os
-from torch.utils.data import Dataset
+from torch.utils.data import Dataset, random_split
 from PIL import Image
 import torchvision.transforms as transforms
+import random
 
 class BreastHistopathologyDataset(Dataset):
-    def __init__(self, root_dir, transform=None):
+    def __init__(self, root_dir, transform=None, train=True, val_ratio=0.2, seed=42):
         self.image_paths = []
         self.labels = []
 
@@ -21,6 +22,20 @@ class BreastHistopathologyDataset(Dataset):
                     if img_name.endswith('.png'):
                         self.image_paths.append(os.path.join(class_folder, img_name))
                         self.labels.append(int(class_label))
+
+        # Split the data into train and validation sets
+        random.seed(seed)
+        indices = list(range(len(self.image_paths)))
+        random.shuffle(indices)
+        split = int(len(indices) * (1 - val_ratio))
+        
+        if train:
+            indices = indices[:split]
+        else:
+            indices = indices[split:]
+            
+        self.image_paths = [self.image_paths[i] for i in indices]
+        self.labels = [self.labels[i] for i in indices]
 
         self.transform = transform or transforms.Compose([
             transforms.Resize((50, 50)),
