@@ -6,5 +6,5 @@ class LogisticRegressionModel(nn.Module):
         self.linear = nn.Linear(input_size, num_classes)
 
     def forward(self, x):
-        x = x.view(x.size(0), -1)  # flatten
+        x = x.view(x.size(0), -1)  # flatten all the dimensions but not the batch size
         return self.linear(x)
