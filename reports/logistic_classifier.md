@@ -7,27 +7,35 @@
 - Linear layer (7500 → 2 classes)
 
 ## Training Configuration
-- Optimizer: SGD
-- Learning rate: 1e-3
+- Optimizer: Adam with weight decay (1e-5)
+- Learning rate: 1e-5 with adaptive reduction (20% reduction if improvement < 1%)
 - Batch size: 64
-- Loss function: Cross Entropy Loss
+- Loss function: Weighted Cross Entropy Loss (handles class imbalance)
+- Number of epochs: 10
 
 ## Implementation Details
 - Added batch normalization for better training stability
 - Implemented dropout for regularization
+- Class weights are automatically calculated to handle class imbalance
 - Comprehensive evaluation metrics including:
   - Accuracy
+  - Balanced Accuracy
   - Precision
   - Recall
+  - Specificity
   - F1 Score
   - AUC-ROC
   - Confusion Matrix
 
-## Results
 
 ## Results
 
-The model achieved an **accuracy of 75.62%** and an **AUC-ROC of 0.755**, indicating solid overall performance. However, **recall was low (0.27)**, indicating many positives were missed. Precision was **0.68**, with an **F1 score of 0.39**. The confusion matrix is: [[37717, 1994], [11536, 4258]]. The model is biased toward the negative class, resulting in a high number of false negatives. This is due to the high class imbalance towards the negative. 
+The model achieved an **accuracy of 78.09%** and an **AUC-ROC of 0.854**, indicating strong overall performance. **Recall improved to 0.786**, significantly reducing false negatives. **Precision** is **0.586**, with an **F1 score of 0.671**, showing a better balance between sensitivity and specificity. **Balanced accuracy** is **0.782**, reflecting improved handling of class imbalance.
+
+
+
+
+
 
 
 
