@@ -46,11 +46,18 @@ def evaluate_model(model, dataset, batch_size=64, device='cpu', logger=None, sav
     fpr, tpr, _ = roc_curve(all_labels, all_probs)
     roc_auc = auc(fpr, tpr)
     
+    # Calculate additional metrics for imbalanced datasets
+    tn, fp, fn, tp = cm.ravel()
+    specificity = tn / (tn + fp) if (tn + fp) > 0 else 0
+    balanced_accuracy = (recall + specificity) / 2
+    
     # Log results
     logger.info(f"Evaluation results:")
     logger.info(f"  - Accuracy: {accuracy:.4f}")
+    logger.info(f"  - Balanced Accuracy: {balanced_accuracy:.4f}")
     logger.info(f"  - Precision: {precision:.4f}")
     logger.info(f"  - Recall: {recall:.4f}")
+    logger.info(f"  - Specificity: {specificity:.4f}")
     logger.info(f"  - F1 Score: {f1:.4f}")
     logger.info(f"  - AUC: {roc_auc:.4f}")
     logger.info(f"  - Confusion Matrix: \n{cm}")
@@ -68,8 +75,10 @@ def evaluate_model(model, dataset, batch_size=64, device='cpu', logger=None, sav
         # Save metrics as JSON
         metrics = {
             'accuracy': float(accuracy),
+            'balanced_accuracy': float(balanced_accuracy),
             'precision': float(precision),
             'recall': float(recall),
+            'specificity': float(specificity),
             'f1_score': float(f1),
             'auc': float(roc_auc),
             'confusion_matrix': cm.tolist()
@@ -123,8 +132,10 @@ def evaluate_model(model, dataset, batch_size=64, device='cpu', logger=None, sav
     
     return {
         'accuracy': accuracy,
+        'balanced_accuracy': balanced_accuracy,
         'precision': precision,
         'recall': recall,
+        'specificity': specificity,
         'f1_score': f1,
         'auc': roc_auc,
         'confusion_matrix': cm
