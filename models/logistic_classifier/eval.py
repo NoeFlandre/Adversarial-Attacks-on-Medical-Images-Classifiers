@@ -65,7 +65,7 @@ def evaluate_model(model, dataset, batch_size=64, device='cpu', logger=None, sav
     if save_results:
         # Create results directory if it doesn't exist
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        results_dir = os.path.join(current_dir, 'results')
+        results_dir = os.path.join(current_dir, 'results/training_evaluation')
         if not os.path.exists(results_dir):
             os.makedirs(results_dir)
         

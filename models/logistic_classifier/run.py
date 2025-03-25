@@ -12,7 +12,7 @@ if __name__ == '__main__':
     # Parse command line arguments
     parser = argparse.ArgumentParser(description='Train and evaluate logistic regression model for breast histopathology')
     parser.add_argument('--data_path', type=str, default='data/', help='Path to the dataset')
-    parser.add_argument('--epochs', type=int, default=10, help='Number of training epochs')
+    parser.add_argument('--epochs', type=int, default=1, help='Number of training epochs')
     parser.add_argument('--batch_size', type=int, default=1024, help='Batch size for training and evaluation')
     parser.add_argument('--learning_rate', type=float, default=1e-5, help='Learning rate')
     parser.add_argument('--weight_decay', type=float, default=1e-5, help='Weight decay for Adam optimizer')
@@ -26,7 +26,7 @@ if __name__ == '__main__':
         torch.cuda.manual_seed(args.seed)
     
     # Set up logger
-    logger = setup_logger()
+    logger = setup_logger('models/logistic_classifier/logs/training_evaluation.log')
     
     logger.info("Starting Logistic Regression classifier training and evaluation")
     logger.info(f"Configuration:")

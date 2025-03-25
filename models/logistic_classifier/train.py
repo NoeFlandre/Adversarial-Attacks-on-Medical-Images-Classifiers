@@ -106,7 +106,7 @@ def train_model(model, train_dataset, val_dataset, epochs=10, batch_size=64, lr=
     
     # Save training plot
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    results_dir = os.path.join(current_dir, 'results')
+    results_dir = os.path.join(current_dir, 'results/training_evaluation')
     if not os.path.exists(results_dir):
         os.makedirs(results_dir)
     
