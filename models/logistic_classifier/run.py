@@ -54,7 +54,7 @@ if __name__ == '__main__':
     logger.info(f"Using device: {device}")
     
     logger.info("\nStarting model training")
-    train_model(model, train_dataset, epochs=args.epochs, batch_size=args.batch_size, 
+    train_model(model, train_dataset, val_dataset, epochs=args.epochs, batch_size=args.batch_size, 
                 lr=args.learning_rate, device=device, logger=logger)
     
     logger.info("\nStarting model evaluation on validation set")

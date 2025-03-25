@@ -41,3 +41,6 @@ models/*/checkpoints/
 # OS specific
 .DS_Store
 Thumbs.db
+
+# Cursor rules
+.cursor/
