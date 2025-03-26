@@ -105,7 +105,7 @@ def train_model(model, train_dataset, val_dataset, epochs=10, batch_size=64, lr=
         logger.info(f"[Epoch {epoch+1}/{epochs}] Train Loss: {train_loss:.4f}, Val Loss: {val_metrics['loss']:.4f}, Val Accuracy: {val_metrics['accuracy']:.4f}")
     
     # Save training plot
-    current_dir = os.path.dirname(os.path.abspath(__file__))
+    current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     results_dir = os.path.join(current_dir, 'results/training_evaluation')
     if not os.path.exists(results_dir):
         os.makedirs(results_dir)

@@ -152,7 +152,7 @@ def evaluate_attack(model, dataset, attack, batch_size=64, device='cpu', logger=
     
     if save_results:
         # Create results directory if it doesn't exist
-        current_dir = os.path.dirname(os.path.abspath(__file__))
+        current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         results_dir = os.path.join(current_dir, 'results', 'adversarial')
         os.makedirs(results_dir, exist_ok=True)
         

@@ -14,7 +14,7 @@ def setup_logger(log_dir=None):
     """
     # Set default log directory to be within the current module's directory
     if log_dir is None:
-        current_dir = os.path.dirname(os.path.abspath(__file__))
+        current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         log_dir = os.path.join(current_dir, 'logs')
     
     # Create logs directory if it doesn't exist

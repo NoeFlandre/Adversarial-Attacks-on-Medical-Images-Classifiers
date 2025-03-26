@@ -2,10 +2,10 @@ import argparse
 import torch
 import os
 import sys
-from model import LogisticRegressionModel
-from dataset import BreastHistopathologyDataset
-from attacks import FGSM, evaluate_attack, AdversarialDataset
-from logger import setup_logger
+from ..src.model import LogisticRegressionModel
+from ..src.dataset import BreastHistopathologyDataset
+from ..src.attacks import FGSM, evaluate_attack, AdversarialDataset
+from ..src.logger import setup_logger
 
 def main():
     parser = argparse.ArgumentParser(description='Run adversarial attacks on the model')
@@ -23,7 +23,7 @@ def main():
                          'cpu')
     
     # Setup logger
-    current_dir = os.path.dirname(os.path.abspath(__file__))
+    current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     log_dir = os.path.join(current_dir, 'logs')
     os.makedirs(log_dir, exist_ok=True)
     logger = setup_logger(os.path.join(log_dir, 'adversarial_attacks.log'))
@@ -48,9 +48,9 @@ def main():
         model.load_state_dict(checkpoint['model_state_dict'])
     else:
         # Look for latest checkpoint in checkpoint directory
-        checkpoint_dir = os.path.join(current_dir, 'checkpoints')
+        checkpoint_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'checkpoints')
         if os.path.exists(checkpoint_dir):
-            checkpoints = [f for f in os.listdir(checkpoint_dir) if f.endswith('.pt')]
+            checkpoints = [f for f in os.listdir(checkpoint_dir) if f.endswith('.pth')]
             if checkpoints:
                 latest_checkpoint = max(checkpoints, key=lambda x: os.path.getmtime(os.path.join(checkpoint_dir, x)))
                 checkpoint_path = os.path.join(checkpoint_dir, latest_checkpoint)
@@ -94,7 +94,7 @@ def main():
             adv_dataset = AdversarialDataset(test_dataset, fgsm_attack, device=device)
             
             # Save the adversarial dataset
-            adv_dataset_dir = os.path.join(current_dir, 'results', 'adversarial', f'fgsm_eps{epsilon}')
+            adv_dataset_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'results', 'adversarial', f'fgsm_eps{epsilon}')
             os.makedirs(adv_dataset_dir, exist_ok=True)
             
             torch.save({

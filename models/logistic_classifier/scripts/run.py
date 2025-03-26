@@ -1,14 +1,14 @@
-from model import LogisticRegressionModel
-from dataset import BreastHistopathologyDataset
-from train import train_model
-from eval import evaluate_model
-from logger import setup_logger
+from ..src.model import LogisticRegressionModel
+from ..src.dataset import BreastHistopathologyDataset
+from .train import train_model
+from .eval import evaluate_model
+from ..src.logger import setup_logger
 import torch
 import os
 import argparse
 import datetime
 
-if __name__ == '__main__':
+def main():
     # Parse command line arguments
     parser = argparse.ArgumentParser(description='Train and evaluate logistic regression model for breast histopathology')
     parser.add_argument('--data_path', type=str, default='data/', help='Path to the dataset')
@@ -26,7 +26,7 @@ if __name__ == '__main__':
         torch.cuda.manual_seed(args.seed)
     
     # Set up logger
-    logger = setup_logger('models/logistic_classifier/logs/training_evaluation.log')
+    logger = setup_logger(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'logs/training_evaluation.log'))
     
     logger.info("Starting Logistic Regression classifier training and evaluation")
     logger.info(f"Configuration:")
@@ -62,7 +62,7 @@ if __name__ == '__main__':
                             device=device, logger=logger, save_results=True)
     
     # Save the model
-    current_dir = os.path.dirname(os.path.abspath(__file__))
+    current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     model_dir = os.path.join(current_dir, 'checkpoints')
     if not os.path.exists(model_dir):
         os.makedirs(model_dir)
@@ -77,3 +77,6 @@ if __name__ == '__main__':
     logger.info(f"Model and metrics saved to {model_path}")
     
     logger.info("\nCompleted training and evaluation")
+
+if __name__ == '__main__':
+    main()

@@ -3,8 +3,8 @@ import torch
 import os
 import matplotlib.pyplot as plt
 import numpy as np
-from model import LogisticRegressionModel
-from logger import setup_logger
+from ..src.model import LogisticRegressionModel
+from ..src.logger import setup_logger
 import json
 
 def plot_epsilon_vs_accuracy(results_dir, output_path, logger):
@@ -98,7 +98,7 @@ def main():
     args = parser.parse_args()
     
     # Setup paths
-    current_dir = os.path.dirname(os.path.abspath(__file__))
+    current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
     if not args.results_dir:
         args.results_dir = os.path.join(current_dir, 'results', 'adversarial')
