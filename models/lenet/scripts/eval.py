@@ -1,44 +1,44 @@
 import os
+import argparse
 import torch
 from torch.utils.data import DataLoader
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_curve, auc, confusion_matrix
 import matplotlib.pyplot as plt
-import seaborn as sns
 import json
 import datetime
 import numpy as np
-from model import LeNet
-from dataset import BreastHistopathologyDataset
-from utils import get_device
 
-def evaluate_model(model, dataset, device=None, logger=None, save_results=True):
+from ..src.model import LeNet
+from ..src.dataset import BreastTumorDataset
+from ..src.logger import setup_logger
+
+def evaluate_model(model, test_loader, device, logger=None, save_results=True, timestamp=None):
     """
     Evaluate the LeNet model on the given dataset
+    
     Args:
         model: Trained LeNet model
-        dataset: BreastHistopathologyDataset instance
-        device: Device to use for inference (if None, will be automatically selected)
+        test_loader: DataLoader for test data
+        device: Device to use for inference
         logger: Logger instance
         save_results: Whether to save results to files
+        
     Returns:
         Dictionary containing evaluation metrics
     """
-    if device is None:
-        device = get_device()
-    model.eval() #fixes dropout and batchnorm
-    dataloader = DataLoader(dataset, batch_size=1024, shuffle=False, num_workers=4) #we load the data using several subprocesses
+    model.eval()
     
     all_preds = []
     all_labels = []
     all_probs = []
     
     if logger:
-        logger.info(f"Evaluating model with batch size: 1024")
+        logger.info(f"Evaluating model on {len(test_loader.dataset)} samples")
     
-    with torch.no_grad(): #we don't need to compute gradients for evaluation
-        for images, labels in dataloader:
+    with torch.no_grad():
+        for images, labels in test_loader:
             images = images.to(device)
-            outputs = model(images) #we get the outputs of the model
+            outputs = model(images)
             _, preds = torch.max(outputs, 1)
             probs = torch.softmax(outputs, dim=1) 
             
@@ -76,13 +76,14 @@ def evaluate_model(model, dataset, device=None, logger=None, save_results=True):
     
     if save_results:
         # Create results directory if it doesn't exist
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        results_dir = os.path.join(current_dir, 'results')
+        current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        results_dir = os.path.join(current_dir, 'results/training_evaluation')
         if not os.path.exists(results_dir):
             os.makedirs(results_dir)
         
-        # Create timestamp for unique filenames
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        # Use provided timestamp or create a new one
+        if timestamp is None:
+            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         
         # Save metrics as JSON
         metrics = {
@@ -156,28 +157,82 @@ def evaluate_model(model, dataset, device=None, logger=None, save_results=True):
         'confusion_matrix': cm
     }
 
-def main():
+def evaluate_model_from_checkpoint(data_dir, checkpoint_path, batch_size=64, logger=None, save_results=True, timestamp=None):
+    """
+    Evaluate the model from a checkpoint
+    
+    Args:
+        data_dir: Path to the dataset directory
+        checkpoint_path: Path to the model checkpoint
+        batch_size: Batch size for evaluation
+        
+    Returns:
+        Dictionary containing evaluation metrics
+    """
+    # Setup device
+    device = torch.device('cuda' if torch.cuda.is_available() else 
+                         'mps' if torch.backends.mps.is_available() else 
+                         'cpu')
+    
+    # Setup logger if not provided
+    if logger is None:
+        current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        log_dir = os.path.join(current_dir, 'logs')
+        os.makedirs(log_dir, exist_ok=True)
+        
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        logger = setup_logger(f'lenet_{timestamp}', log_type='training_evaluation')
+    
+    logger.info(f"Using device: {device}")
+    logger.info(f"Loading model from checkpoint: {checkpoint_path}")
+    
     # Load the model
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    model_path = os.path.join(current_dir, 'checkpoints', 'lenet_model.pth')
-    
-    if not os.path.exists(model_path):
-        raise FileNotFoundError(f"Model not found at {model_path}")
-    
-    device = get_device()
     model = LeNet().to(device)
-    model.load(model_path)
     
-    # Load validation dataset
-    dataset = BreastHistopathologyDataset(
-        root_dir='data/',  
-        train=False
+    checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
+    if 'model_state_dict' in checkpoint:
+        model.load_state_dict(checkpoint['model_state_dict'])
+    else:
+        model.load_state_dict(checkpoint)
+    
+    # Create test dataset
+    test_dataset = BreastTumorDataset(
+        root_dir=data_dir,
+        train=False,
+        val_ratio=0.2,
+        seed=42
+    )
+    
+    test_loader = DataLoader(
+        test_dataset,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=2
     )
     
     # Evaluate model
-    metrics = evaluate_model(model, dataset, device)
+    logger.info(f"Evaluating model on test set...")
+    metrics = evaluate_model(model, test_loader, device, logger, save_results=save_results, timestamp=timestamp)
     
-    # Print results
+    return metrics
+
+def main(args=None):
+    """Main function for model evaluation"""
+    if args is None:
+        parser = argparse.ArgumentParser(description='Evaluate LeNet model')
+        parser.add_argument('--data_dir', type=str, default='data/', help='Path to dataset')
+        parser.add_argument('--checkpoint', type=str, required=True, help='Path to model checkpoint')
+        parser.add_argument('--batch_size', type=int, default=64, help='Batch size for evaluation')
+        args = parser.parse_args()
+    
+    # Evaluate the model
+    metrics = evaluate_model_from_checkpoint(
+        data_dir=args.data_dir,
+        checkpoint_path=args.checkpoint,
+        batch_size=args.batch_size
+    )
+    
+    # Print a summary of the results
     print("\nEvaluation Results:")
     print(f"Accuracy: {metrics['accuracy']:.4f}")
     print(f"Balanced Accuracy: {metrics['balanced_accuracy']:.4f}")
@@ -186,8 +241,8 @@ def main():
     print(f"Specificity: {metrics['specificity']:.4f}")
     print(f"F1 Score: {metrics['f1_score']:.4f}")
     print(f"AUC: {metrics['auc']:.4f}")
-    print("\nConfusion Matrix:")
-    print(metrics['confusion_matrix'])
+    
+    return metrics
 
 if __name__ == '__main__':
     main() 

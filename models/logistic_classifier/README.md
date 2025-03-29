@@ -24,32 +24,6 @@ python -m models.logistic_classifier.main train
 
 ## Usage
 
-### Training
-```bash
-python models/logistic_classifier/run_classifier.py train \
-  --data_path data/ \
-  --epochs 10 \
-  --batch_size 1024 \
-  --learning_rate 1e-5
-```
-
-### Running Adversarial Attacks
-```bash
-python models/logistic_classifier/run_classifier.py attack \
-  --data_dir data/ \
-  --checkpoint models/logistic_classifier/checkpoints/logistic_regression_model_TIMESTAMP.pth \
-  --batch_size 1024 \
-  --epsilons 0.01 0.05 0.1 0.2 \
-  --save_adv_examples
-```
-
-### Visualizing Results
-```bash
-python models/logistic_classifier/run_classifier.py visualize \
-  --results_dir models/logistic_classifier/results/adversarial \
-  --num_samples 5
-```
-
 ## Key Parameters
 
 ### Training

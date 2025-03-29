@@ -3,9 +3,10 @@ import torch
 import os
 import matplotlib.pyplot as plt
 import numpy as np
-from ..src.model import LogisticRegressionModel
+from ..src.model import LeNet
 from ..src.logger import setup_logger
 import json
+import datetime
 
 def plot_epsilon_vs_accuracy(results_dir, output_path, logger):
     """
@@ -104,9 +105,7 @@ def main():
         args.results_dir = os.path.join(current_dir, 'results', 'adversarial')
     
     # Setup logger
-    log_dir = os.path.join(current_dir, 'logs')
-    os.makedirs(log_dir, exist_ok=True)
-    logger = setup_logger(os.path.join(log_dir, 'visualize_attacks.log'))
+    logger = setup_logger('lenet_visualization', log_type='visualize_attacks')
     
     logger.info(f"Visualizing adversarial attack results from {args.results_dir}")
     

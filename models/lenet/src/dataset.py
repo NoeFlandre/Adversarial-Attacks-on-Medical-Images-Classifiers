@@ -1,11 +1,12 @@
 import os
-from torch.utils.data import Dataset
+import torch
+from torch.utils.data import Dataset, DataLoader
 from PIL import Image
 import torchvision.transforms as transforms
 import random
 import numpy as np
 
-class BreastHistopathologyDataset(Dataset):
+class BreastTumorDataset(Dataset):
     def __init__(self, root_dir, transform=None, train=True, val_ratio=0.2, seed=42):
         self.image_paths = []
         self.labels = []
@@ -51,18 +52,53 @@ class BreastHistopathologyDataset(Dataset):
         label = self.labels[idx]
         return self.transform(image), label
 
-    def get_all_data(self):
-        """
-        Get all images and labels as numpy arrays for LeNet training
-        Returns:
-            X: numpy array of flattened images
-            y: numpy array of labels
-        """
-        X = []
-        y = []
-        for img_path, label in zip(self.image_paths, self.labels):
-            image = Image.open(img_path).convert('RGB')
-            image = self.transform(image)
-            X.append(image.numpy().flatten())
-            y.append(label)
-        return np.array(X), np.array(y) 
+def get_dataloaders(data_dir, batch_size=32, val_ratio=0.2, seed=42):
+    """
+    Create training and validation dataloaders
+    
+    Args:
+        data_dir: Path to the dataset
+        batch_size: Batch size for training and validation
+        val_ratio: Ratio of validation data
+        seed: Random seed for reproducibility
+        
+    Returns:
+        train_loader: DataLoader for training data
+        val_loader: DataLoader for validation data
+    """
+    transform = transforms.Compose([
+        transforms.Resize((50, 50)),
+        transforms.ToTensor(),
+    ])
+    
+    train_dataset = BreastTumorDataset(
+        root_dir=data_dir,
+        transform=transform,
+        train=True,
+        val_ratio=val_ratio,
+        seed=seed
+    )
+    
+    val_dataset = BreastTumorDataset(
+        root_dir=data_dir,
+        transform=transform,
+        train=False,
+        val_ratio=val_ratio,
+        seed=seed
+    )
+    
+    train_loader = DataLoader(
+        train_dataset,
+        batch_size=batch_size,
+        shuffle=True,
+        num_workers=2
+    )
+    
+    val_loader = DataLoader(
+        val_dataset,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=2
+    )
+    
+    return train_loader, val_loader 

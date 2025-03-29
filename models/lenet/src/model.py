@@ -64,6 +64,6 @@ class LeNet(nn.Module):
             path: Path to load the model from
         """
         if os.path.exists(path):
-            self.load_state_dict(torch.load(path))
+            self.load_state_dict(torch.load(path, weights_only=False))
         else:
             raise FileNotFoundError(f"Model file not found at {path}") 
