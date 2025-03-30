@@ -65,15 +65,29 @@ def evaluate_model(model, dataset, batch_size=64, device='cpu', logger=None, sav
     if save_results:
         # Create results directory if it doesn't exist
         current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        results_dir = os.path.join(current_dir, 'results/training_evaluation')
+        
+        # Determine appropriate results directory
+        # Check if this was called from the adversarial training pipeline
+        import inspect
+        caller_frame = inspect.currentframe().f_back
+        caller_module = inspect.getmodule(caller_frame)
+        
+        if caller_module and ('train_adversarial' in caller_module.__name__ or 'run_adv_train' in caller_module.__name__):
+            # Use adversarial training results directory
+            results_dir = os.path.join(current_dir, 'results/adversarial_training')
+            logger.info("Saving results to adversarial training directory")
+        else:
+            # Use standard training results directory
+            results_dir = os.path.join(current_dir, 'results/training_evaluation')
+            
         if not os.path.exists(results_dir):
             os.makedirs(results_dir)
         
         # Create timestamp for unique filenames
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         
-        # Save metrics as JSON
-        metrics = {
+        # Save metrics as JSON with all values as Python native types
+        metrics_serializable = {
             'accuracy': float(accuracy),
             'balanced_accuracy': float(balanced_accuracy),
             'precision': float(precision),
@@ -86,7 +100,7 @@ def evaluate_model(model, dataset, batch_size=64, device='cpu', logger=None, sav
         
         metrics_file = os.path.join(results_dir, f"metrics_{timestamp}.json")
         with open(metrics_file, 'w') as f:
-            json.dump(metrics, f, indent=4)
+            json.dump(metrics_serializable, f, indent=4)
         logger.info(f"Saved metrics to {metrics_file}")
         
         # Plot and save confusion matrix
@@ -113,6 +127,7 @@ def evaluate_model(model, dataset, batch_size=64, device='cpu', logger=None, sav
         
         cm_file = os.path.join(results_dir, f"confusion_matrix_{timestamp}.png")
         plt.savefig(cm_file)
+        plt.close()  # Close the figure to avoid memory leaks
         logger.info(f"Saved confusion matrix plot to {cm_file}")
         
         # Plot and save ROC curve
@@ -128,6 +143,7 @@ def evaluate_model(model, dataset, batch_size=64, device='cpu', logger=None, sav
         
         roc_file = os.path.join(results_dir, f"roc_curve_{timestamp}.png")
         plt.savefig(roc_file)
+        plt.close()  # Close the figure to avoid memory leaks
         logger.info(f"Saved ROC curve plot to {roc_file}")
     
     return {
