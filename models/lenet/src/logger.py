@@ -8,7 +8,7 @@ def setup_logger(name='lenet', log_type=None, level=logging.INFO):
     
     Args:
         name (str): Name of the logger
-        log_type (str): Type of log (e.g., 'training_evaluation', 'adversarial_attacks', 'visualize_attacks')
+        log_type (str): Type of log (e.g., 'training_evaluation', 'adversarial_attacks', 'visualize_attacks', 'adversarial_training', 'model_comparison')
         level (int): Logging level
     
     Returns:

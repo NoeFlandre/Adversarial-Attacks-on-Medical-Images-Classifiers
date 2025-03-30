@@ -1,0 +1,183 @@
+2025-03-30 12:59:58,459 - INFO - Logging initialized. Log file: /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/logs/adversarial_training.log/lenet_20250330_125958.log
+2025-03-30 12:59:58,460 - INFO - Starting LeNet adversarial training
+2025-03-30 12:59:58,460 - INFO - Configuration:
+2025-03-30 12:59:58,460 - INFO -   - Epochs: 20
+2025-03-30 12:59:58,460 - INFO -   - Batch size: 1024
+2025-03-30 12:59:58,460 - INFO -   - Learning rate: 0.0001
+2025-03-30 12:59:58,460 - INFO -   - Validation ratio: 0.2
+2025-03-30 12:59:58,460 - INFO -   - FGSM epsilon: 0.05
+2025-03-30 12:59:58,460 - INFO -   - Mix ratio: 0.5
+2025-03-30 12:59:58,484 - INFO - Logging initialized. Log file: /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/logs/adversarial_training.log/lenet_20250330_125958.log
+2025-03-30 12:59:58,484 - INFO - Using device: mps
+2025-03-30 12:59:58,484 - INFO - Training with adversarial examples (FGSM, epsilon=0.05, mix_ratio=0.5)
+2025-03-30 12:59:58,484 - INFO - Training with batch size: 1024, learning rate: 0.0001, epochs: 20
+2025-03-30 12:59:58,484 - INFO - Logs will be saved to: /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/logs
+2025-03-30 12:59:58,484 - INFO - Results will be saved to: /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/results/adversarial_training
+2025-03-30 12:59:58,484 - INFO - Checkpoints will be saved to: /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/checkpoints
+2025-03-30 13:00:57,801 - INFO - Class weights: [0.6980544328689575, 1.7622793912887573]
+2025-03-30 13:00:57,801 - INFO - Warmup epochs: 3
+2025-03-30 13:02:41,305 - INFO - Saved best model checkpoint to /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/checkpoints/lenet_adv_model_best.pth
+2025-03-30 13:02:41,312 - INFO - [Epoch 1/20]
+  Training - Loss: 0.6298, Grad Norm: 0.9469
+  Training - Accuracy: 0.7508, Precision: 0.5437
+  Training - Recall: 0.7485, F1: 0.6299
+  Learning Rate: 3.33e-05
+  Validation - Loss: 0.4733
+  Validation - Clean Accuracy: 0.8114
+  Validation - Adversarial Accuracy: 0.5611
+  Validation - Balanced Accuracy: 0.7956
+  Validation - Precision: 0.6427
+  Validation - Recall: 0.7591
+2025-03-30 13:04:28,620 - INFO - Saved best model checkpoint to /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/checkpoints/lenet_adv_model_best.pth
+2025-03-30 13:04:28,621 - INFO - [Epoch 2/20]
+  Training - Loss: 0.5961, Grad Norm: 0.8458
+  Training - Accuracy: 0.8110, Precision: 0.6336
+  Training - Recall: 0.7848, F1: 0.7012
+  Learning Rate: 6.67e-05
+  Validation - Loss: 0.4583
+  Validation - Clean Accuracy: 0.8227
+  Validation - Adversarial Accuracy: 0.5966
+  Validation - Balanced Accuracy: 0.8014
+  Validation - Precision: 0.6671
+  Validation - Recall: 0.7521
+2025-03-30 13:06:17,447 - INFO - Saved best model checkpoint to /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/checkpoints/lenet_adv_model_best.pth
+2025-03-30 13:06:17,450 - INFO - [Epoch 3/20]
+  Training - Loss: 0.5799, Grad Norm: 0.7924
+  Training - Accuracy: 0.8156, Precision: 0.6420
+  Training - Recall: 0.7893, F1: 0.7081
+  Learning Rate: 1.00e-04
+  Validation - Loss: 0.4442
+  Validation - Clean Accuracy: 0.8168
+  Validation - Adversarial Accuracy: 0.5971
+  Validation - Balanced Accuracy: 0.8066
+  Validation - Precision: 0.6472
+  Validation - Recall: 0.7830
+2025-03-30 13:08:08,422 - INFO - Saved best model checkpoint to /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/checkpoints/lenet_adv_model_best.pth
+2025-03-30 13:08:08,428 - INFO - [Epoch 4/20]
+  Training - Loss: 0.5711, Grad Norm: 0.7921
+  Training - Accuracy: 0.8144, Precision: 0.6348
+  Training - Recall: 0.7969, F1: 0.7067
+  Learning Rate: 1.00e-04
+  Validation - Loss: 0.4329
+  Validation - Clean Accuracy: 0.8204
+  Validation - Adversarial Accuracy: 0.6025
+  Validation - Balanced Accuracy: 0.8128
+  Validation - Precision: 0.6511
+  Validation - Recall: 0.7950
+2025-03-30 13:09:53,960 - INFO - Saved best model checkpoint to /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/checkpoints/lenet_adv_model_best.pth
+2025-03-30 13:09:53,961 - INFO - [Epoch 5/20]
+  Training - Loss: 0.5559, Grad Norm: 0.8807
+  Training - Accuracy: 0.8193, Precision: 0.6458
+  Training - Recall: 0.8063, F1: 0.7172
+  Learning Rate: 9.91e-05
+  Validation - Loss: 0.4248
+  Validation - Clean Accuracy: 0.8199
+  Validation - Adversarial Accuracy: 0.6317
+  Validation - Balanced Accuracy: 0.8177
+  Validation - Precision: 0.6459
+  Validation - Recall: 0.8125
+2025-03-30 13:11:41,270 - INFO - Saved best model checkpoint to /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/checkpoints/lenet_adv_model_best.pth
+2025-03-30 13:11:41,271 - INFO - [Epoch 6/20]
+  Training - Loss: 0.5140, Grad Norm: 0.9541
+  Training - Accuracy: 0.8224, Precision: 0.6470
+  Training - Recall: 0.8181, F1: 0.7226
+  Learning Rate: 9.66e-05
+  Validation - Loss: 0.4236
+  Validation - Clean Accuracy: 0.8349
+  Validation - Adversarial Accuracy: 0.6939
+  Validation - Balanced Accuracy: 0.8116
+  Validation - Precision: 0.6917
+  Validation - Recall: 0.7574
+2025-03-30 13:13:28,914 - INFO - Saved best model checkpoint to /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/checkpoints/lenet_adv_model_best.pth
+2025-03-30 13:13:28,916 - INFO - [Epoch 7/20]
+  Training - Loss: 0.4610, Grad Norm: 0.9940
+  Training - Accuracy: 0.8275, Precision: 0.6526
+  Training - Recall: 0.8359, F1: 0.7330
+  Learning Rate: 9.25e-05
+  Validation - Loss: 0.4037
+  Validation - Clean Accuracy: 0.8300
+  Validation - Adversarial Accuracy: 0.6494
+  Validation - Balanced Accuracy: 0.8299
+  Validation - Precision: 0.6600
+  Validation - Recall: 0.8299
+2025-03-30 13:15:21,370 - INFO - [Epoch 8/20]
+  Training - Loss: 0.4129, Grad Norm: 0.9997
+  Training - Accuracy: 0.8267, Precision: 0.6505
+  Training - Recall: 0.8446, F1: 0.7350
+  Learning Rate: 8.70e-05
+  Validation - Loss: 0.4161
+  Validation - Clean Accuracy: 0.8102
+  Validation - Adversarial Accuracy: 0.5945
+  Validation - Balanced Accuracy: 0.8212
+  Validation - Precision: 0.6224
+  Validation - Recall: 0.8468
+2025-03-30 13:17:09,219 - INFO - [Epoch 9/20]
+  Training - Loss: 0.3703, Grad Norm: 1.0000
+  Training - Accuracy: 0.8269, Precision: 0.6460
+  Training - Recall: 0.8543, F1: 0.7357
+  Learning Rate: 8.01e-05
+  Validation - Loss: 0.4345
+  Validation - Clean Accuracy: 0.7867
+  Validation - Adversarial Accuracy: 0.4109
+  Validation - Balanced Accuracy: 0.8077
+  Validation - Precision: 0.5857
+  Validation - Recall: 0.8564
+2025-03-30 13:18:55,777 - INFO - [Epoch 10/20]
+  Training - Loss: 0.3447, Grad Norm: 1.0000
+  Training - Accuracy: 0.8298, Precision: 0.6528
+  Training - Recall: 0.8527, F1: 0.7395
+  Learning Rate: 7.23e-05
+  Validation - Loss: 0.4273
+  Validation - Clean Accuracy: 0.7875
+  Validation - Adversarial Accuracy: 0.6694
+  Validation - Balanced Accuracy: 0.8203
+  Validation - Precision: 0.5823
+  Validation - Recall: 0.8964
+2025-03-30 13:20:43,244 - INFO - [Epoch 11/20]
+  Training - Loss: 0.3322, Grad Norm: 1.0000
+  Training - Accuracy: 0.8312, Precision: 0.6558
+  Training - Recall: 0.8523, F1: 0.7413
+  Learning Rate: 6.37e-05
+  Validation - Loss: 0.4170
+  Validation - Clean Accuracy: 0.7838
+  Validation - Adversarial Accuracy: 0.6144
+  Validation - Balanced Accuracy: 0.8158
+  Validation - Precision: 0.5781
+  Validation - Recall: 0.8900
+2025-03-30 13:22:28,125 - INFO - [Epoch 12/20]
+  Training - Loss: 0.3208, Grad Norm: 1.0000
+  Training - Accuracy: 0.8328, Precision: 0.6593
+  Training - Recall: 0.8536, F1: 0.7440
+  Learning Rate: 5.46e-05
+  Validation - Loss: 0.4362
+  Validation - Clean Accuracy: 0.7709
+  Validation - Adversarial Accuracy: 0.3936
+  Validation - Balanced Accuracy: 0.8050
+  Validation - Precision: 0.5620
+  Validation - Recall: 0.8840
+2025-03-30 13:22:28,126 - INFO - Early stopping triggered after 12 epochs
+2025-03-30 13:22:28,126 - INFO - Restored best model from epoch 7
+2025-03-30 13:22:28,143 - INFO - Saved final model checkpoint to /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/checkpoints/lenet_adv_model_eps0.05_mix0.5_20250330_125958.pth
+2025-03-30 13:22:28,690 - INFO - Saved loss plot to /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/results/adversarial_training/training_validation_loss_eps0.05_mix0.5_20250330_125958.png
+2025-03-30 13:22:28,753 - INFO - Saved training plots to /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/results/adversarial_training/training_validation_loss_eps0.05_mix0.5_20250330_125958.png and /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/results/adversarial_training/clean_vs_adversarial_accuracy_eps0.05_mix0.5_20250330_125958.png
+2025-03-30 13:22:28,753 - INFO - Saved training history to /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/results/adversarial_training/training_history_eps0.05_mix0.5_20250330_125958.json
+2025-03-30 13:22:28,766 - INFO - 
+Evaluating final model on validation set
+2025-03-30 13:22:30,214 - INFO - Evaluating model on 55505 samples
+2025-03-30 13:22:51,848 - INFO - Evaluation results:
+2025-03-30 13:22:51,848 - INFO -   - Accuracy: 0.7709
+2025-03-30 13:22:51,848 - INFO -   - Balanced Accuracy: 0.8050
+2025-03-30 13:22:51,848 - INFO -   - Precision: 0.5620
+2025-03-30 13:22:51,848 - INFO -   - Recall: 0.8840
+2025-03-30 13:22:51,848 - INFO -   - Specificity: 0.7260
+2025-03-30 13:22:51,849 - INFO -   - F1 Score: 0.6871
+2025-03-30 13:22:51,849 - INFO -   - AUC: 0.8953
+2025-03-30 13:22:51,849 - INFO -   - Confusion Matrix: 
+[[28829 10882]
+ [ 1832 13962]]
+2025-03-30 13:22:51,850 - INFO - Saved metrics to /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/results/adversarial_training/metrics_20250330_132230.json
+2025-03-30 13:22:51,918 - INFO - Saved confusion matrix plot to /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/results/adversarial_training/confusion_matrix_20250330_132230.png
+2025-03-30 13:22:51,959 - INFO - Saved ROC curve plot to /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/results/adversarial_training/roc_curve_20250330_132230.png
+2025-03-30 13:22:51,959 - INFO - Results summary saved to /Users/noeflandre/Documents/[03] School/École d'ingénieur/3A/IIT Bombay/Courses/Medical Image Computing/Project/Adversarial-Attacks-on-Medical-Images-Classifiers/models/lenet/results/adversarial_training/adversarial_training_summary_eps0.05_mix0.5_20250330_132230.json
+2025-03-30 13:22:51,959 - INFO - 
+Completed adversarial training and evaluation
