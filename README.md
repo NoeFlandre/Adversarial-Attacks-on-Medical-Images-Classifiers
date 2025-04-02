@@ -79,14 +79,6 @@ python -m models.tiny_resnet.main attack --data_dir data/ --checkpoint models/ti
 
 Refer to the individual model README files for detailed usage instructions.
 
-## Model Sizes
-
-The project includes models of varying complexity:
-- Logistic Classifier: Smallest model with linear decision boundary
-- MLP: ~7.7M parameters with 32-unit hidden layers
-- LeNet: ~1.1M parameters
-- TinyResNet: ~200K parameters with residual connections
-
 ## Results
 
 Results for each model are stored in their respective directories under `models/[model_name]/results/`. These include:
