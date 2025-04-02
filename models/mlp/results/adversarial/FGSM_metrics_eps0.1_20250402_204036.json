@@ -1,0 +1,8 @@
+{
+    "attack": "FGSM",
+    "epsilon": 0.1,
+    "clean_accuracy": 0.8121430501756598,
+    "adversarial_accuracy": 0.13634807674984237,
+    "attack_success_rate": 0.675867039005495,
+    "attack_success_rate_correct": 0.6758310062156563
+}
