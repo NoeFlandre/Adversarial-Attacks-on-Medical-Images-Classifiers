@@ -11,7 +11,7 @@ This project explores the vulnerability of medical image classifiers to adversar
 │   ├── logistic_classifier/   # Logistic Regression classifier
 │   ├── lenet/                 # LeNet CNN classifier
 │   ├── mlp/                   # Multi-Layer Perceptron classifier
-│   └── tiny_resnet/           # TinyResNet CNN classifier
+│   └── tiny_transformer/      # TinyTransformer
 ├── notebooks/                 # Jupyter notebooks for data exploration
 └── reports/                   # Analysis reports and findings
 ```
@@ -22,13 +22,13 @@ This project explores the vulnerability of medical image classifiers to adversar
 A simple logistic regression model that serves as a baseline.
 
 ### 2. LeNet
-A CNN architecture based on the classic LeNet-5 design, adapted for image classification.
+A CNN architecture based on the classic LeNet-5 design, adapted for image our case of binary classification.
 
 ### 3. MLP (Multi-Layer Perceptron)
 A fully connected neural network with configurable hidden layers and dropout for regularization.
 
-### 4. TinyResNet
-A small ResNet-style CNN with approximately 200K parameters, using residual blocks for improved gradient flow.
+### 4. Tiny Transformer
+A tiny transformer architecture that we keep around 200k parameters for fair comparison with the other models
 
 ## Training Features
 
@@ -47,14 +47,6 @@ All models are evaluated against the Fast Gradient Sign Method (FGSM) attack wit
 
 Models can be trained using a mixture of clean and adversarially perturbed examples to improve robustness against attacks. The project includes scripts to compare standard and adversarially trained models.
 
-## Key Features
-
-- Model parameter counting and logging
-- Comprehensive evaluation metrics (accuracy, precision, recall, F1-score, ROC curves)
-- Visualization of adversarial examples and their effects
-- Modular architecture to easily add new model types
-- Command-line interfaces for all models with consistent parameters
-
 ## If using a VM 
 
 You can transfer your data to the VM using this command
@@ -65,16 +57,16 @@ rsync -avzP /Users/noeflandre/Adversarial-Attacks-on-Medical-Images-Classifiers 
 
 ## Running the Code
 
-Each model can be trained, evaluated, and tested against adversarial attacks using its respective command-line interface. For example, to train the TinyResNet model:
+Each model can be trained, evaluated, and tested against adversarial attacks using its respective command-line interface. For example, to train the TinyTransformer model:
 
 ```bash
-python -m models.tiny_resnet.main train --data_path data/ --epochs 10 --batch_size 64
+python -m models.tiny_transformer.main train --data_path data/ --epochs 10 --batch_size 64
 ```
 
 To run adversarial attacks on a trained model:
 
 ```bash
-python -m models.tiny_resnet.main attack --data_dir data/ --checkpoint models/tiny_resnet/checkpoints/[checkpoint_file].pth
+python -m models.tiny_transformer.main attack --data_dir data/ --checkpoint models/tiny_transformer/checkpoints/[checkpoint_file].pth
 ```
 
 Refer to the individual model README files for detailed usage instructions.
