@@ -1,0 +1,82 @@
+2025-04-10 13:42:04,205 - INFO - Logging initialized. Log file: /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/logs/adversarial_training.log/mlp_20250410_134204.log
+2025-04-10 13:42:04,205 - INFO - Starting Tiny Transformer classifier with adversarial training
+2025-04-10 13:42:04,205 - INFO - Configuration:
+2025-04-10 13:42:04,205 - INFO -   - Epochs: 20
+2025-04-10 13:42:04,205 - INFO -   - Batch size: 8192
+2025-04-10 13:42:04,205 - INFO -   - Learning rate: 0.0001
+2025-04-10 13:42:04,205 - INFO -   - Weight decay: 1e-05
+2025-04-10 13:42:04,205 - INFO -   - Validation ratio: 0.2
+2025-04-10 13:42:04,206 - INFO -   - FGSM epsilon: 0.03
+2025-04-10 13:42:04,206 - INFO -   - Mix ratio: 0.5
+2025-04-10 13:42:04,206 - INFO - 
+Loading datasets from data/
+2025-04-10 13:42:05,543 - INFO - Training set size: 222019
+2025-04-10 13:42:05,543 - INFO - Validation set size: 55505
+2025-04-10 13:42:05,543 - INFO - 
+Initializing Tiny Transformer model
+2025-04-10 13:42:05,582 - INFO - Model parameters: 181,442 (0.18M)
+2025-04-10 13:42:05,583 - INFO - Using device: cuda
+2025-04-10 13:42:05,583 - INFO - 
+Starting model training with adversarial examples
+2025-04-10 13:43:56,006 - INFO - Training with adversarial examples (FGSM, epsilon=0.03, mix_ratio=0.5)
+2025-04-10 13:43:56,007 - INFO - Batch size: 8192, initial learning rate: 0.0001, epochs: 20
+2025-04-10 13:43:56,007 - INFO - Class weights: [0.6982520222663879, 1.761021375656128]
+2025-04-10 13:45:09,318 - INFO - [Epoch 1/20] Train Loss: 0.7014, Clean Val Acc: 0.7137, Adv Val Acc: 0.2941
+2025-04-10 13:46:22,000 - INFO - [Epoch 2/20] Train Loss: 0.6802, Clean Val Acc: 0.7457, Adv Val Acc: 0.5292
+2025-04-10 13:47:34,134 - INFO - [Epoch 3/20] Train Loss: 0.6475, Clean Val Acc: 0.7274, Adv Val Acc: 0.5020
+2025-04-10 13:48:47,487 - INFO - [Epoch 4/20] Train Loss: 0.6246, Clean Val Acc: 0.7734, Adv Val Acc: 0.5765
+2025-04-10 13:49:59,361 - INFO - Reducing learning rate to 8.00e-05
+2025-04-10 13:49:59,361 - INFO - [Epoch 5/20] Train Loss: 0.6136, Clean Val Acc: 0.8004, Adv Val Acc: 0.6559
+2025-04-10 13:51:12,612 - INFO - [Epoch 6/20] Train Loss: 0.6089, Clean Val Acc: 0.7891, Adv Val Acc: 0.6166
+2025-04-10 13:52:25,879 - INFO - Reducing learning rate to 6.40e-05
+2025-04-10 13:52:25,879 - INFO - [Epoch 7/20] Train Loss: 0.6032, Clean Val Acc: 0.7865, Adv Val Acc: 0.6221
+2025-04-10 13:53:38,670 - INFO - Reducing learning rate to 5.12e-05
+2025-04-10 13:53:38,670 - INFO - [Epoch 8/20] Train Loss: 0.5985, Clean Val Acc: 0.7795, Adv Val Acc: 0.6095
+2025-04-10 13:54:50,995 - INFO - Reducing learning rate to 4.10e-05
+2025-04-10 13:54:50,995 - INFO - [Epoch 9/20] Train Loss: 0.5947, Clean Val Acc: 0.7942, Adv Val Acc: 0.6456
+2025-04-10 13:56:04,252 - INFO - Reducing learning rate to 3.28e-05
+2025-04-10 13:56:04,252 - INFO - [Epoch 10/20] Train Loss: 0.5932, Clean Val Acc: 0.7964, Adv Val Acc: 0.6557
+2025-04-10 13:57:17,447 - INFO - Reducing learning rate to 2.62e-05
+2025-04-10 13:57:17,447 - INFO - [Epoch 11/20] Train Loss: 0.5892, Clean Val Acc: 0.7866, Adv Val Acc: 0.6356
+2025-04-10 13:58:31,113 - INFO - Reducing learning rate to 2.10e-05
+2025-04-10 13:58:31,114 - INFO - [Epoch 12/20] Train Loss: 0.5872, Clean Val Acc: 0.7946, Adv Val Acc: 0.6564
+2025-04-10 13:59:43,271 - INFO - Reducing learning rate to 1.68e-05
+2025-04-10 13:59:43,271 - INFO - [Epoch 13/20] Train Loss: 0.5855, Clean Val Acc: 0.7949, Adv Val Acc: 0.6586
+2025-04-10 14:00:55,378 - INFO - Reducing learning rate to 1.34e-05
+2025-04-10 14:00:55,378 - INFO - [Epoch 14/20] Train Loss: 0.5851, Clean Val Acc: 0.7871, Adv Val Acc: 0.6458
+2025-04-10 14:02:07,488 - INFO - Reducing learning rate to 1.07e-05
+2025-04-10 14:02:07,488 - INFO - [Epoch 15/20] Train Loss: 0.5819, Clean Val Acc: 0.7910, Adv Val Acc: 0.6569
+2025-04-10 14:03:20,120 - INFO - Reducing learning rate to 8.59e-06
+2025-04-10 14:03:20,120 - INFO - [Epoch 16/20] Train Loss: 0.5824, Clean Val Acc: 0.7892, Adv Val Acc: 0.6548
+2025-04-10 14:04:32,472 - INFO - Reducing learning rate to 6.87e-06
+2025-04-10 14:04:32,473 - INFO - [Epoch 17/20] Train Loss: 0.5813, Clean Val Acc: 0.7868, Adv Val Acc: 0.6513
+2025-04-10 14:05:45,071 - INFO - Reducing learning rate to 5.50e-06
+2025-04-10 14:05:45,071 - INFO - [Epoch 18/20] Train Loss: 0.5797, Clean Val Acc: 0.7874, Adv Val Acc: 0.6536
+2025-04-10 14:06:58,061 - INFO - Reducing learning rate to 4.40e-06
+2025-04-10 14:06:58,062 - INFO - [Epoch 19/20] Train Loss: 0.5788, Clean Val Acc: 0.7890, Adv Val Acc: 0.6576
+2025-04-10 14:08:11,450 - INFO - Reducing learning rate to 3.52e-06
+2025-04-10 14:08:11,451 - INFO - [Epoch 20/20] Train Loss: 0.5777, Clean Val Acc: 0.7906, Adv Val Acc: 0.6639
+2025-04-10 14:08:11,783 - INFO - Saved training plots to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial_training/training_validation_loss_eps0.03_mix0.5_20250410_140811.png and /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial_training/clean_vs_adversarial_accuracy_eps0.03_mix0.5_20250410_140811.png
+2025-04-10 14:08:11,783 - INFO - Saved training history to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial_training/training_history_eps0.03_mix0.5_20250410_140811.json
+2025-04-10 14:08:11,784 - INFO - 
+Starting model evaluation on validation set
+2025-04-10 14:08:11,784 - INFO - Evaluating model with batch size: 8192
+2025-04-10 14:08:41,704 - INFO - Evaluation results:
+2025-04-10 14:08:41,704 - INFO -   - Accuracy: 0.7906
+2025-04-10 14:08:41,704 - INFO -   - Balanced Accuracy: 0.7912
+2025-04-10 14:08:41,704 - INFO -   - Precision: 0.5991
+2025-04-10 14:08:41,704 - INFO -   - Recall: 0.7924
+2025-04-10 14:08:41,704 - INFO -   - Specificity: 0.7899
+2025-04-10 14:08:41,704 - INFO -   - F1 Score: 0.6823
+2025-04-10 14:08:41,704 - INFO -   - AUC: 0.8536
+2025-04-10 14:08:41,704 - INFO -   - Confusion Matrix: 
+[[31404  8352]
+ [ 3269 12480]]
+2025-04-10 14:08:41,705 - INFO - Saving results to adversarial training directory
+2025-04-10 14:08:41,705 - INFO - Saved metrics to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial_training/metrics_20250410_140841.json
+2025-04-10 14:08:41,905 - INFO - Saved confusion matrix plot to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial_training/confusion_matrix_20250410_140841.png
+2025-04-10 14:08:42,045 - INFO - Saved ROC curve plot to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial_training/roc_curve_20250410_140841.png
+2025-04-10 14:08:42,050 - INFO - Model and metrics saved to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/checkpoints/tiny_transformer_adversarial_eps0.03_mix0.5_20250410_140842.pth
+2025-04-10 14:08:42,051 - INFO - Results summary saved to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial_training/adversarial_training_summary_eps0.03_mix0.5_20250410_140842.json
+2025-04-10 14:08:42,051 - INFO - 
+Completed adversarial training and evaluation

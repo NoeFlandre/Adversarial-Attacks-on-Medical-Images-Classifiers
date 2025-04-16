@@ -1,0 +1,74 @@
+2025-04-10 14:18:29,878 - INFO - Logging initialized. Log file: /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/logs/model_comparison.log/mlp_20250410_141829.log
+2025-04-10 14:18:29,878 - INFO - Comparing models on device: cuda
+2025-04-10 14:18:29,878 - INFO - Standard model path: models/tiny_transformer/checkpoints/tiny_transformer_model_20250410_114945.pth
+2025-04-10 14:18:29,878 - INFO - Adversarial model path: models/tiny_transformer/checkpoints/tiny_transformer_adversarial_eps0.03_mix0.5_20250410_140842.pth
+2025-04-10 14:18:29,908 - INFO - Tiny Transformer parameters: 181,442 (0.18M)
+2025-04-10 14:18:30,125 - INFO - Tiny Transformer parameters: 181,442 (0.18M)
+2025-04-10 14:18:30,135 - INFO - Standard model: Standard trained
+2025-04-10 14:18:30,135 - INFO - Adversarial model: Adversarially trained
+2025-04-10 14:18:30,135 - INFO - Adversarial training parameters: epsilon=0.03, mix_ratio=0.5
+2025-04-10 14:18:30,758 - INFO - Test dataset size: 55505
+2025-04-10 14:19:29,044 - INFO - Clean accuracy - Standard model: 0.7867
+2025-04-10 14:19:29,044 - INFO - Clean accuracy - Adversarial model: 0.7906
+2025-04-10 14:19:29,044 - INFO - Evaluating FGSM attack with epsilon=0.01
+2025-04-10 14:19:29,044 - INFO - Evaluating standard model against FGSM (ε=0.01)
+2025-04-10 14:19:29,045 - INFO - Evaluating FGSM attack with epsilon=0.01
+2025-04-10 14:20:09,816 - INFO - Attack evaluation results:
+2025-04-10 14:20:09,816 - INFO -   - Clean Accuracy: 0.7867
+2025-04-10 14:20:09,816 - INFO -   - Adversarial Accuracy: 0.5374
+2025-04-10 14:20:09,816 - INFO -   - Attack Success Rate: 0.2494
+2025-04-10 14:20:09,816 - INFO -   - Attack Success Rate (on correctly classified): 0.2494
+2025-04-10 14:20:09,816 - INFO - Evaluating adversarial model against FGSM (ε=0.01)
+2025-04-10 14:20:09,817 - INFO - Evaluating FGSM attack with epsilon=0.01
+2025-04-10 14:20:49,179 - INFO - Attack evaluation results:
+2025-04-10 14:20:49,179 - INFO -   - Clean Accuracy: 0.7906
+2025-04-10 14:20:49,180 - INFO -   - Adversarial Accuracy: 0.7425
+2025-04-10 14:20:49,180 - INFO -   - Attack Success Rate: 0.0481
+2025-04-10 14:20:49,180 - INFO -   - Attack Success Rate (on correctly classified): 0.0481
+2025-04-10 14:20:49,180 - INFO - Evaluating FGSM attack with epsilon=0.05
+2025-04-10 14:20:49,180 - INFO - Evaluating standard model against FGSM (ε=0.05)
+2025-04-10 14:20:49,181 - INFO - Evaluating FGSM attack with epsilon=0.05
+2025-04-10 14:21:26,781 - INFO - Attack evaluation results:
+2025-04-10 14:21:26,781 - INFO -   - Clean Accuracy: 0.7867
+2025-04-10 14:21:26,781 - INFO -   - Adversarial Accuracy: 0.0303
+2025-04-10 14:21:26,781 - INFO -   - Attack Success Rate: 0.7564
+2025-04-10 14:21:26,781 - INFO -   - Attack Success Rate (on correctly classified): 0.7564
+2025-04-10 14:21:26,782 - INFO - Evaluating adversarial model against FGSM (ε=0.05)
+2025-04-10 14:21:26,783 - INFO - Evaluating FGSM attack with epsilon=0.05
+2025-04-10 14:22:05,956 - INFO - Attack evaluation results:
+2025-04-10 14:22:05,956 - INFO -   - Clean Accuracy: 0.7906
+2025-04-10 14:22:05,956 - INFO -   - Adversarial Accuracy: 0.5817
+2025-04-10 14:22:05,957 - INFO -   - Attack Success Rate: 0.2089
+2025-04-10 14:22:05,957 - INFO -   - Attack Success Rate (on correctly classified): 0.2089
+2025-04-10 14:22:05,957 - INFO - Evaluating FGSM attack with epsilon=0.1
+2025-04-10 14:22:05,957 - INFO - Evaluating standard model against FGSM (ε=0.1)
+2025-04-10 14:22:05,958 - INFO - Evaluating FGSM attack with epsilon=0.1
+2025-04-10 14:22:45,251 - INFO - Attack evaluation results:
+2025-04-10 14:22:45,251 - INFO -   - Clean Accuracy: 0.7867
+2025-04-10 14:22:45,251 - INFO -   - Adversarial Accuracy: 0.0008
+2025-04-10 14:22:45,251 - INFO -   - Attack Success Rate: 0.7859
+2025-04-10 14:22:45,251 - INFO -   - Attack Success Rate (on correctly classified): 0.7859
+2025-04-10 14:22:45,251 - INFO - Evaluating adversarial model against FGSM (ε=0.1)
+2025-04-10 14:22:45,253 - INFO - Evaluating FGSM attack with epsilon=0.1
+2025-04-10 14:23:24,611 - INFO - Attack evaluation results:
+2025-04-10 14:23:24,611 - INFO -   - Clean Accuracy: 0.7906
+2025-04-10 14:23:24,612 - INFO -   - Adversarial Accuracy: 0.3979
+2025-04-10 14:23:24,612 - INFO -   - Attack Success Rate: 0.3930
+2025-04-10 14:23:24,612 - INFO -   - Attack Success Rate (on correctly classified): 0.3929
+2025-04-10 14:23:24,612 - INFO - Evaluating FGSM attack with epsilon=0.2
+2025-04-10 14:23:24,612 - INFO - Evaluating standard model against FGSM (ε=0.2)
+2025-04-10 14:23:24,613 - INFO - Evaluating FGSM attack with epsilon=0.2
+2025-04-10 14:24:03,998 - INFO - Attack evaluation results:
+2025-04-10 14:24:03,998 - INFO -   - Clean Accuracy: 0.7867
+2025-04-10 14:24:03,998 - INFO -   - Adversarial Accuracy: 0.0004
+2025-04-10 14:24:03,998 - INFO -   - Attack Success Rate: 0.7863
+2025-04-10 14:24:03,998 - INFO -   - Attack Success Rate (on correctly classified): 0.7863
+2025-04-10 14:24:03,998 - INFO - Evaluating adversarial model against FGSM (ε=0.2)
+2025-04-10 14:24:03,999 - INFO - Evaluating FGSM attack with epsilon=0.2
+2025-04-10 14:24:43,361 - INFO - Attack evaluation results:
+2025-04-10 14:24:43,362 - INFO -   - Clean Accuracy: 0.7906
+2025-04-10 14:24:43,362 - INFO -   - Adversarial Accuracy: 0.2246
+2025-04-10 14:24:43,362 - INFO -   - Attack Success Rate: 0.5882
+2025-04-10 14:24:43,362 - INFO -   - Attack Success Rate (on correctly classified): 0.5771
+2025-04-10 14:24:43,362 - INFO - Results saved to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/comparisons/model_comparison_20250410_142443.json
+2025-04-10 14:24:43,586 - INFO - Comparison plot saved to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/comparisons/model_comparison_plot_20250410_142443.png

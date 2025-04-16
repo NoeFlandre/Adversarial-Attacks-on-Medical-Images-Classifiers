@@ -1,0 +1,76 @@
+2025-04-10 11:31:58,425 - INFO - Logging initialized. Log file: /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/logs/training_evaluation.log/mlp_20250410_113158.log
+2025-04-10 11:31:58,425 - INFO - Starting Tiny Transformer classifier training and evaluation
+2025-04-10 11:31:58,425 - INFO - Configuration:
+2025-04-10 11:31:58,425 - INFO -   - Epochs: 20
+2025-04-10 11:31:58,425 - INFO -   - Batch size: 16384
+2025-04-10 11:31:58,425 - INFO -   - Learning rate: 0.0001
+2025-04-10 11:31:58,425 - INFO -   - Weight decay: 1e-05
+2025-04-10 11:31:58,425 - INFO -   - Validation ratio: 0.2
+2025-04-10 11:31:58,425 - INFO - 
+Loading datasets from data/
+2025-04-10 11:31:59,745 - INFO - Training set size: 222019
+2025-04-10 11:31:59,746 - INFO - Validation set size: 55505
+2025-04-10 11:31:59,746 - INFO - 
+Initializing Tiny Transformer model
+2025-04-10 11:31:59,765 - INFO - Model parameters: 181,442 (0.18M)
+2025-04-10 11:31:59,765 - INFO - Using device: cuda
+2025-04-10 11:31:59,765 - INFO - 
+Starting model training
+2025-04-10 11:33:50,863 - INFO - Training with batch size: 16384, initial learning rate: 0.0001, epochs: 20
+2025-04-10 11:33:50,863 - INFO - Class weights: [0.6982520222663879, 1.761021375656128]
+2025-04-10 11:34:36,493 - INFO - [Epoch 1/20] Train Loss: 0.6931, Val Loss: 0.6828, Val Accuracy: 0.7476
+2025-04-10 11:35:23,048 - INFO - [Epoch 2/20] Train Loss: 0.6662, Val Loss: 0.6322, Val Accuracy: 0.7575
+2025-04-10 11:36:09,357 - INFO - [Epoch 3/20] Train Loss: 0.5729, Val Loss: 0.5179, Val Accuracy: 0.7600
+2025-04-10 11:36:55,887 - INFO - [Epoch 4/20] Train Loss: 0.5022, Val Loss: 0.4808, Val Accuracy: 0.7882
+2025-04-10 11:37:42,378 - INFO - [Epoch 5/20] Train Loss: 0.4874, Val Loss: 0.4724, Val Accuracy: 0.7854
+2025-04-10 11:38:28,283 - INFO - Reducing learning rate to 8.00e-05
+2025-04-10 11:38:28,283 - INFO - [Epoch 6/20] Train Loss: 0.4782, Val Loss: 0.4707, Val Accuracy: 0.7870
+2025-04-10 11:39:13,984 - INFO - Reducing learning rate to 6.40e-05
+2025-04-10 11:39:13,984 - INFO - [Epoch 7/20] Train Loss: 0.4733, Val Loss: 0.4696, Val Accuracy: 0.7860
+2025-04-10 11:40:00,358 - INFO - Reducing learning rate to 5.12e-05
+2025-04-10 11:40:00,359 - INFO - [Epoch 8/20] Train Loss: 0.4724, Val Loss: 0.4690, Val Accuracy: 0.7796
+2025-04-10 11:40:47,164 - INFO - Reducing learning rate to 4.10e-05
+2025-04-10 11:40:47,164 - INFO - [Epoch 9/20] Train Loss: 0.4721, Val Loss: 0.4689, Val Accuracy: 0.7879
+2025-04-10 11:41:33,241 - INFO - Reducing learning rate to 3.28e-05
+2025-04-10 11:41:33,241 - INFO - [Epoch 10/20] Train Loss: 0.4711, Val Loss: 0.4681, Val Accuracy: 0.7843
+2025-04-10 11:42:19,233 - INFO - Reducing learning rate to 2.62e-05
+2025-04-10 11:42:19,233 - INFO - [Epoch 11/20] Train Loss: 0.4713, Val Loss: 0.4679, Val Accuracy: 0.7828
+2025-04-10 11:43:04,966 - INFO - Reducing learning rate to 2.10e-05
+2025-04-10 11:43:04,966 - INFO - [Epoch 12/20] Train Loss: 0.4710, Val Loss: 0.4676, Val Accuracy: 0.7826
+2025-04-10 11:43:51,973 - INFO - Reducing learning rate to 1.68e-05
+2025-04-10 11:43:51,973 - INFO - [Epoch 13/20] Train Loss: 0.4707, Val Loss: 0.4676, Val Accuracy: 0.7873
+2025-04-10 11:44:38,183 - INFO - Reducing learning rate to 1.34e-05
+2025-04-10 11:44:38,183 - INFO - [Epoch 14/20] Train Loss: 0.4704, Val Loss: 0.4673, Val Accuracy: 0.7864
+2025-04-10 11:45:25,308 - INFO - Reducing learning rate to 1.07e-05
+2025-04-10 11:45:25,308 - INFO - [Epoch 15/20] Train Loss: 0.4701, Val Loss: 0.4670, Val Accuracy: 0.7833
+2025-04-10 11:46:10,808 - INFO - Reducing learning rate to 8.59e-06
+2025-04-10 11:46:10,808 - INFO - [Epoch 16/20] Train Loss: 0.4700, Val Loss: 0.4669, Val Accuracy: 0.7832
+2025-04-10 11:46:56,416 - INFO - Reducing learning rate to 6.87e-06
+2025-04-10 11:46:56,417 - INFO - [Epoch 17/20] Train Loss: 0.4701, Val Loss: 0.4668, Val Accuracy: 0.7837
+2025-04-10 11:47:42,545 - INFO - Reducing learning rate to 5.50e-06
+2025-04-10 11:47:42,545 - INFO - [Epoch 18/20] Train Loss: 0.4702, Val Loss: 0.4667, Val Accuracy: 0.7832
+2025-04-10 11:48:28,234 - INFO - Reducing learning rate to 4.40e-06
+2025-04-10 11:48:28,234 - INFO - [Epoch 19/20] Train Loss: 0.4698, Val Loss: 0.4668, Val Accuracy: 0.7807
+2025-04-10 11:49:15,326 - INFO - Reducing learning rate to 3.52e-06
+2025-04-10 11:49:15,326 - INFO - [Epoch 20/20] Train Loss: 0.4695, Val Loss: 0.4667, Val Accuracy: 0.7867
+2025-04-10 11:49:15,489 - INFO - Saved training and validation loss plot to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/training_evaluation/training_validation_loss.png
+2025-04-10 11:49:15,489 - INFO - 
+Starting model evaluation on validation set
+2025-04-10 11:49:15,490 - INFO - Evaluating model with batch size: 16384
+2025-04-10 11:49:44,803 - INFO - Evaluation results:
+2025-04-10 11:49:44,803 - INFO -   - Accuracy: 0.7867
+2025-04-10 11:49:44,803 - INFO -   - Balanced Accuracy: 0.7914
+2025-04-10 11:49:44,803 - INFO -   - Precision: 0.5916
+2025-04-10 11:49:44,803 - INFO -   - Recall: 0.8021
+2025-04-10 11:49:44,803 - INFO -   - Specificity: 0.7806
+2025-04-10 11:49:44,803 - INFO -   - F1 Score: 0.6809
+2025-04-10 11:49:44,803 - INFO -   - AUC: 0.8597
+2025-04-10 11:49:44,803 - INFO -   - Confusion Matrix: 
+[[31035  8721]
+ [ 3117 12632]]
+2025-04-10 11:49:44,804 - INFO - Saved metrics to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/training_evaluation/metrics_20250410_114944.json
+2025-04-10 11:49:44,998 - INFO - Saved confusion matrix plot to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/training_evaluation/confusion_matrix_20250410_114944.png
+2025-04-10 11:49:45,134 - INFO - Saved ROC curve plot to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/training_evaluation/roc_curve_20250410_114944.png
+2025-04-10 11:49:45,140 - INFO - Model and metrics saved to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/checkpoints/tiny_transformer_model_20250410_114945.pth
+2025-04-10 11:49:45,140 - INFO - 
+Completed training and evaluation

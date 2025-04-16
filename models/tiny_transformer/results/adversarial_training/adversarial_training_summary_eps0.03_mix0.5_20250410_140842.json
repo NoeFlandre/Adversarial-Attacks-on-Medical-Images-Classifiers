@@ -1,0 +1,36 @@
+{
+    "model_type": "tiny_transformer_adversarial",
+    "timestamp": "20250410_140842",
+    "epsilon": 0.03,
+    "mix_ratio": 0.5,
+    "metrics": {
+        "accuracy": 0.7906314746419242,
+        "balanced_accuracy": 0.7911748841723324,
+        "precision": 0.5990783410138248,
+        "recall": 0.7924312654771731,
+        "specificity": 0.7899185028674917,
+        "f1_score": 0.6823214236898937,
+        "auc": 0.8536462892882726,
+        "confusion_matrix": [
+            [
+                31404,
+                8352
+            ],
+            [
+                3269,
+                12480
+            ]
+        ]
+    },
+    "config": {
+        "data_path": "data/",
+        "epochs": 20,
+        "batch_size": 8192,
+        "learning_rate": 0.0001,
+        "weight_decay": 1e-05,
+        "val_ratio": 0.2,
+        "seed": 42,
+        "epsilon": 0.03,
+        "mix_ratio": 0.5
+    }
+}

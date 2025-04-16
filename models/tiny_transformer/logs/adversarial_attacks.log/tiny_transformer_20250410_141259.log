@@ -1,0 +1,50 @@
+2025-04-10 14:12:59,808 - INFO - Logging initialized. Log file: /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/logs/adversarial_attacks.log/mlp_20250410_141259.log
+2025-04-10 14:12:59,808 - INFO - Running adversarial attack evaluation with device: cuda
+2025-04-10 14:12:59,808 - INFO - Loading dataset from data/
+2025-04-10 14:13:00,431 - INFO - Test dataset size: 55505
+2025-04-10 14:13:00,458 - INFO - Tiny Transformer parameters: 181,442 (0.18M)
+2025-04-10 14:13:00,458 - INFO - Loading model checkpoint from models/tiny_transformer/checkpoints/tiny_transformer_model_20250410_114945.pth
+2025-04-10 14:13:00,663 - INFO - Running FGSM attack with epsilon=0.01
+2025-04-10 14:13:00,665 - INFO - Evaluating FGSM attack with epsilon=0.01
+2025-04-10 14:13:40,201 - INFO - Attack evaluation results:
+2025-04-10 14:13:40,201 - INFO -   - Clean Accuracy: 0.7867
+2025-04-10 14:13:40,201 - INFO -   - Adversarial Accuracy: 0.5374
+2025-04-10 14:13:40,201 - INFO -   - Attack Success Rate: 0.2494
+2025-04-10 14:13:40,201 - INFO -   - Attack Success Rate (on correctly classified): 0.2494
+2025-04-10 14:13:40,201 - INFO - Saved metrics to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial/FGSM_metrics_eps0.01_20250410_141340.json
+2025-04-10 14:13:40,728 - INFO - Saved adversarial examples visualization to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial/FGSM_examples_eps0.01_20250410_141340.png
+2025-04-10 14:13:40,728 - INFO - Generating and saving adversarial dataset with epsilon=0.01
+2025-04-10 14:14:20,634 - INFO - Saved adversarial dataset to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial/fgsm_eps0.01
+2025-04-10 14:14:20,635 - INFO - Running FGSM attack with epsilon=0.03
+2025-04-10 14:14:20,636 - INFO - Evaluating FGSM attack with epsilon=0.03
+2025-04-10 14:14:58,783 - INFO - Attack evaluation results:
+2025-04-10 14:14:58,783 - INFO -   - Clean Accuracy: 0.7867
+2025-04-10 14:14:58,783 - INFO -   - Adversarial Accuracy: 0.0998
+2025-04-10 14:14:58,784 - INFO -   - Attack Success Rate: 0.6869
+2025-04-10 14:14:58,784 - INFO -   - Attack Success Rate (on correctly classified): 0.6869
+2025-04-10 14:14:58,784 - INFO - Saved metrics to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial/FGSM_metrics_eps0.03_20250410_141458.json
+2025-04-10 14:14:59,398 - INFO - Saved adversarial examples visualization to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial/FGSM_examples_eps0.03_20250410_141458.png
+2025-04-10 14:14:59,403 - INFO - Generating and saving adversarial dataset with epsilon=0.03
+2025-04-10 14:15:39,002 - INFO - Saved adversarial dataset to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial/fgsm_eps0.03
+2025-04-10 14:15:39,002 - INFO - Running FGSM attack with epsilon=0.05
+2025-04-10 14:15:39,004 - INFO - Evaluating FGSM attack with epsilon=0.05
+2025-04-10 14:16:19,461 - INFO - Attack evaluation results:
+2025-04-10 14:16:19,461 - INFO -   - Clean Accuracy: 0.7867
+2025-04-10 14:16:19,461 - INFO -   - Adversarial Accuracy: 0.0303
+2025-04-10 14:16:19,461 - INFO -   - Attack Success Rate: 0.7564
+2025-04-10 14:16:19,461 - INFO -   - Attack Success Rate (on correctly classified): 0.7564
+2025-04-10 14:16:19,461 - INFO - Saved metrics to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial/FGSM_metrics_eps0.05_20250410_141619.json
+2025-04-10 14:16:19,990 - INFO - Saved adversarial examples visualization to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial/FGSM_examples_eps0.05_20250410_141619.png
+2025-04-10 14:16:19,990 - INFO - Generating and saving adversarial dataset with epsilon=0.05
+2025-04-10 14:17:00,715 - INFO - Saved adversarial dataset to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial/fgsm_eps0.05
+2025-04-10 14:17:00,715 - INFO - Running FGSM attack with epsilon=0.1
+2025-04-10 14:17:00,716 - INFO - Evaluating FGSM attack with epsilon=0.1
+2025-04-10 14:17:41,609 - INFO - Attack evaluation results:
+2025-04-10 14:17:41,609 - INFO -   - Clean Accuracy: 0.7867
+2025-04-10 14:17:41,609 - INFO -   - Adversarial Accuracy: 0.0008
+2025-04-10 14:17:41,609 - INFO -   - Attack Success Rate: 0.7859
+2025-04-10 14:17:41,609 - INFO -   - Attack Success Rate (on correctly classified): 0.7859
+2025-04-10 14:17:41,610 - INFO - Saved metrics to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial/FGSM_metrics_eps0.1_20250410_141741.json
+2025-04-10 14:17:42,138 - INFO - Saved adversarial examples visualization to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial/FGSM_examples_eps0.1_20250410_141741.png
+2025-04-10 14:17:42,138 - INFO - Generating and saving adversarial dataset with epsilon=0.1
+2025-04-10 14:18:22,394 - INFO - Saved adversarial dataset to /workspace/Adversarial-Attacks-on-Medical-Images-Classifiers/models/tiny_transformer/results/adversarial/fgsm_eps0.1
