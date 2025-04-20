@@ -50,6 +50,10 @@ def main():
     attack_parser.add_argument('--epsilons', type=float, nargs='+', default=[0.01, 0.05, 0.1, 0.2], 
                         help='Epsilon values for FGSM attack (attack strength)')
     attack_parser.add_argument('--save_adv_examples', action='store_true', help='Save adversarial examples')
+    # Attack type selection for FGSM/DeepFool
+    attack_parser.add_argument('--attack', choices=['FGSM','DeepFool'], default='FGSM', help='Type of adversarial attack to run')
+    attack_parser.add_argument('--max_iter', type=int, default=50, help='Max iterations for DeepFool attack')
+    attack_parser.add_argument('--overshoot', type=float, default=0.02, help='Overshoot factor for DeepFool attack')
     
     # Visualization command
     vis_parser = subparsers.add_parser('visualize', help='Visualize attack results')

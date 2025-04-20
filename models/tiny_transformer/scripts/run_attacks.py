@@ -4,7 +4,7 @@ import os
 import sys
 from ..src.model import TinyTransformer
 from ..src.dataset import BreastHistopathologyDataset
-from ..src.attacks import FGSM, evaluate_attack, AdversarialDataset
+from ..src.attacks import FGSM, DeepFool, evaluate_attack, AdversarialDataset
 from ..src.logger import setup_logger
 
 def main():
@@ -15,6 +15,10 @@ def main():
     parser.add_argument('--epsilons', type=float, nargs='+', default=[0.01, 0.05, 0.1, 0.2], 
                         help='Epsilon values for FGSM attack (attack strength)')
     parser.add_argument('--save_adv_examples', action='store_true', help='Save adversarial examples')
+    # Attack type selection for FGSM/DeepFool
+    parser.add_argument('--attack', choices=['FGSM','DeepFool'], default='FGSM', help='Type of adversarial attack to run')
+    parser.add_argument('--max_iter', type=int, default=50, help='Max iterations for DeepFool attack')
+    parser.add_argument('--overshoot', type=float, default=0.02, help='Overshoot factor for DeepFool attack')
     args = parser.parse_args()
 
     # Set device
@@ -76,39 +80,52 @@ def main():
     # Create loss function with class weights for FGSM
     criterion = torch.nn.CrossEntropyLoss()
     
-    # Run FGSM attacks with different epsilon values
-    for epsilon in args.epsilons:
-        logger.info(f"Running FGSM attack with epsilon={epsilon}")
-        
-        # Create FGSM attack
-        fgsm_attack = FGSM(model, criterion=criterion, epsilon=epsilon)
-        
-        # Evaluate attack
+    if args.attack == 'FGSM':
+        # Run FGSM attacks with different epsilon values
+        for epsilon in args.epsilons:
+            logger.info(f"Running FGSM attack with epsilon={epsilon}")
+            
+            # Create FGSM attack
+            fgsm_attack = FGSM(model, criterion=criterion, epsilon=epsilon)
+            
+            # Evaluate attack
+            metrics = evaluate_attack(
+                model=model,
+                dataset=test_dataset,
+                attack=fgsm_attack,
+                batch_size=args.batch_size,
+                device=device,
+                logger=logger,
+                save_results=True
+            )
+            
+            # Save adversarial examples if requested
+            if args.save_adv_examples:
+                logger.info(f"Generating and saving adversarial dataset with epsilon={epsilon}")
+                adv_dataset = AdversarialDataset(test_dataset, fgsm_attack, device=device)
+                
+                # Save the adversarial dataset
+                adv_dataset_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'results', 'adversarial', f'fgsm_eps{epsilon}')
+                os.makedirs(adv_dataset_dir, exist_ok=True)
+                
+                torch.save({
+                    'adversarial_images': adv_dataset.adversarial_images,
+                    'labels': adv_dataset.labels
+                }, os.path.join(adv_dataset_dir, 'adversarial_dataset.pt'))
+                
+                logger.info(f"Saved adversarial dataset to {adv_dataset_dir}")
+    elif args.attack == 'DeepFool':
+        logger.info(f"Running DeepFool attack with max_iter={args.max_iter}, overshoot={args.overshoot}")
+        attack = DeepFool(model, criterion=criterion, max_iter=args.max_iter, overshoot=args.overshoot)
         metrics = evaluate_attack(
             model=model,
             dataset=test_dataset,
-            attack=fgsm_attack,
+            attack=attack,
             batch_size=args.batch_size,
             device=device,
             logger=logger,
             save_results=True
         )
-        
-        # Save adversarial examples if requested
-        if args.save_adv_examples:
-            logger.info(f"Generating and saving adversarial dataset with epsilon={epsilon}")
-            adv_dataset = AdversarialDataset(test_dataset, fgsm_attack, device=device)
-            
-            # Save the adversarial dataset
-            adv_dataset_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'results', 'adversarial', f'fgsm_eps{epsilon}')
-            os.makedirs(adv_dataset_dir, exist_ok=True)
-            
-            torch.save({
-                'adversarial_images': adv_dataset.adversarial_images,
-                'labels': adv_dataset.labels
-            }, os.path.join(adv_dataset_dir, 'adversarial_dataset.pt'))
-            
-            logger.info(f"Saved adversarial dataset to {adv_dataset_dir}")
 
 if __name__ == '__main__':
     main()

@@ -1,0 +1,9 @@
+{
+    "attack": "DeepFool",
+    "overshoot": 0.02,
+    "max_iter": 50,
+    "clean_accuracy": 0.769912620484641,
+    "adversarial_accuracy": 0.0,
+    "attack_success_rate": 0.769912620484641,
+    "attack_success_rate_correct": 0.769912620484641
+}

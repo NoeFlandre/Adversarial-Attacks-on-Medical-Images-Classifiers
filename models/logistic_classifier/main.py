@@ -9,6 +9,9 @@ import argparse
 import os
 import sys
 
+# Ensure the scripts package is importable when running as a script
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 def main():
     parser = argparse.ArgumentParser(
         description="Breast Tumor Classification - Logistic Regression with Adversarial Attacks",
@@ -39,6 +42,18 @@ def main():
     adv_train_parser.add_argument('--epsilon', type=float, default=0.05, help='Epsilon for FGSM adversarial training')
     adv_train_parser.add_argument('--mix_ratio', type=float, default=0.5, help='Ratio of adversarial examples in each batch')
     
+    # DeepFool adversarial training command
+    deepfool_adv_train_parser = subparsers.add_parser('deepfool_adv_train', help='Train the logistic regression model with DeepFool adversarial training')
+    deepfool_adv_train_parser.add_argument('--data_path', type=str, default='data/', help='Path to the dataset')
+    deepfool_adv_train_parser.add_argument('--epochs', type=int, default=1, help='Number of training epochs')
+    deepfool_adv_train_parser.add_argument('--batch_size', type=int, default=1024, help='Batch size for training and evaluation')
+    deepfool_adv_train_parser.add_argument('--learning_rate', type=float, default=1e-5, help='Learning rate')
+    deepfool_adv_train_parser.add_argument('--weight_decay', type=float, default=1e-5, help='Weight decay for Adam optimizer')
+    deepfool_adv_train_parser.add_argument('--val_ratio', type=float, default=0.2, help='Ratio of validation data')
+    deepfool_adv_train_parser.add_argument('--seed', type=int, default=42, help='Random seed for reproducibility')
+    deepfool_adv_train_parser.add_argument('--max_iter', type=int, default=50, help='Max iterations for DeepFool attack')
+    deepfool_adv_train_parser.add_argument('--overshoot', type=float, default=0.02, help='Overshoot factor for DeepFool attack')
+    
     # Adversarial attacks command
     attack_parser = subparsers.add_parser('attack', help='Run adversarial attacks on the model')
     attack_parser.add_argument('--data_dir', type=str, default='data/', help='Path to the dataset directory')
@@ -47,6 +62,10 @@ def main():
     attack_parser.add_argument('--epsilons', type=float, nargs='+', default=[0.01, 0.05, 0.1, 0.2], 
                         help='Epsilon values for FGSM attack (attack strength)')
     attack_parser.add_argument('--save_adv_examples', action='store_true', help='Save adversarial examples')
+    # Select attack type and DeepFool parameters
+    attack_parser.add_argument('--attack', choices=['FGSM','DeepFool'], default='FGSM', help='Type of adversarial attack to run (FGSM or DeepFool)')
+    attack_parser.add_argument('--max_iter', type=int, default=50, help='Max iterations for DeepFool attack')
+    attack_parser.add_argument('--overshoot', type=float, default=0.02, help='Overshoot factor for DeepFool attack')
     
     # Visualization command
     vis_parser = subparsers.add_parser('visualize', help='Visualize attack results')
@@ -74,7 +93,7 @@ def main():
     
     if args.command == 'train':
         # Import here to avoid circular imports
-        from .scripts.run import main as train_main
+        from scripts.run import main as train_main
         # Convert namespace to dictionary and pass as kwargs
         train_args = vars(args)
         del train_args['command']  # Remove the command key
@@ -89,7 +108,7 @@ def main():
         train_main()
     
     elif args.command == 'adv_train':
-        from .scripts.run_adv_train import main as adv_train_main
+        from scripts.run_adv_train import main as adv_train_main
         # Run the adversarial training script
         sys.argv = ['run_adv_train.py']  # Reset sys.argv
         adv_train_args = vars(args)
@@ -102,8 +121,22 @@ def main():
                     sys.argv.extend([f'--{key}', str(value)])
         adv_train_main()
         
+    elif args.command == 'deepfool_adv_train':
+        from scripts.run_deepfool_adv_train import main as deepfool_adv_train_main
+        # Run the DeepFool adversarial training script
+        sys.argv = ['run_deepfool_adv_train.py']  # Reset sys.argv
+        deepfool_adv_train_args = vars(args)
+        del deepfool_adv_train_args['command']
+        for key, value in deepfool_adv_train_args.items():
+            if value is not None:
+                if isinstance(value, bool) and value:
+                    sys.argv.append(f'--{key}')
+                else:
+                    sys.argv.extend([f'--{key}', str(value)])
+        deepfool_adv_train_main()
+        
     elif args.command == 'attack':
-        from .scripts.run_attacks import main as attack_main
+        from scripts.run_attacks import main as attack_main
         # Run the attack script
         sys.argv = ['run_attacks.py']  # Reset sys.argv
         attack_args = vars(args)
@@ -120,7 +153,7 @@ def main():
         attack_main()
         
     elif args.command == 'visualize':
-        from .scripts.visualize_attacks import main as visualize_main
+        from scripts.visualize_attacks import main as visualize_main
         # Run the visualization script
         sys.argv = ['visualize_attacks.py']  # Reset sys.argv
         vis_args = vars(args)
@@ -134,7 +167,7 @@ def main():
         visualize_main()
     
     elif args.command == 'compare':
-        from .scripts.compare_models import main as compare_main
+        from scripts.compare_models import main as compare_main
         # Run the comparison script
         sys.argv = ['compare_models.py']  # Reset sys.argv
         compare_args = vars(args)

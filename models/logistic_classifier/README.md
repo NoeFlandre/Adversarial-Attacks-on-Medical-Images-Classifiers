@@ -35,6 +35,16 @@ python -m models.logistic_classifier.main adv_train --data_path data/ --epochs 1
 ```bash
 python -m models.logistic_classifier.main attack --data_dir data/ --checkpoint models/logistic_classifier/checkpoints/my_model.pth --epsilons 0.01 0.05 0.1 0.2
 ```
+### DeepFool Attack
+```bash
+python -m models.logistic_classifier.main attack \
+  --data_dir data/ \
+  --checkpoint models/logistic_classifier/checkpoints/my_model.pth \
+  --attack DeepFool \
+  --max_iter 50 \
+  --overshoot 0.02 \
+  [--save_adv_examples]
+```
 
 ### Compare Models
 ```bash
@@ -93,4 +103,3 @@ The comparison tool evaluates both standard and adversarially trained models aga
 3. Logs detailing the performance differences
 
 Results are saved to the `results/comparisons` directory.
-

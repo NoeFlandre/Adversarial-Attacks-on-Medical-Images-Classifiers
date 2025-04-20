@@ -50,6 +50,10 @@ def main():
                         help='Epsilon values for FGSM attack (attack strength)')
     attack_parser.add_argument('--save_adv_examples', action='store_true', help='Save adversarial examples')
     attack_parser.add_argument('--hidden_size', type=int, default=32, help='Size of hidden layers in MLP')
+    # Allow choosing attack type and DeepFool parameters
+    attack_parser.add_argument('--attack', choices=['FGSM','DeepFool'], default='FGSM', help='Type of adversarial attack to run')
+    attack_parser.add_argument('--max_iter', type=int, default=50, help='Max iterations for DeepFool attack')
+    attack_parser.add_argument('--overshoot', type=float, default=0.02, help='Overshoot factor for DeepFool attack')
     
     # Visualization command
     vis_parser = subparsers.add_parser('visualize', help='Visualize attack results')
