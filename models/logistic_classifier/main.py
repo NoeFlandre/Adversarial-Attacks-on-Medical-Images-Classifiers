@@ -41,6 +41,22 @@ def main():
     adv_train_parser.add_argument('--seed', type=int, default=42, help='Random seed for reproducibility')
     adv_train_parser.add_argument('--epsilon', type=float, default=0.05, help='Epsilon for FGSM adversarial training')
     adv_train_parser.add_argument('--mix_ratio', type=float, default=0.5, help='Ratio of adversarial examples in each batch')
+
+    # PGD adversarial training command
+    pgd_adv_train_parser = subparsers.add_parser('pgd_adv_train', help='Train the logistic regression model with PGD adversarial training')
+    pgd_adv_train_parser.add_argument('--data_path', type=str, default='data/', help='Path to the dataset')
+    pgd_adv_train_parser.add_argument('--epochs', type=int, default=1, help='Number of training epochs')
+    pgd_adv_train_parser.add_argument('--batch_size', type=int, default=1024, help='Batch size for training and evaluation')
+    pgd_adv_train_parser.add_argument('--learning_rate', type=float, default=1e-5, help='Learning rate')
+    pgd_adv_train_parser.add_argument('--weight_decay', type=float, default=1e-5, help='Weight decay for Adam optimizer')
+    pgd_adv_train_parser.add_argument('--val_ratio', type=float, default=0.2, help='Ratio of validation data')
+    pgd_adv_train_parser.add_argument('--seed', type=int, default=42, help='Random seed for reproducibility')
+    pgd_adv_train_parser.add_argument('--epsilon', type=float, default=0.1, help='Epsilon for PGD attack')
+    pgd_adv_train_parser.add_argument('--alpha', type=float, default=0.01, help='Step size for PGD attack')
+    pgd_adv_train_parser.add_argument('--num_iter', type=int, default=20, help='Number of iterations for PGD attack')
+    pgd_adv_train_parser.add_argument('--random_start', action='store_true', help='Use random initialization for PGD attack')
+    pgd_adv_train_parser.add_argument('--mix_ratio', type=float, default=0.5, help='Ratio of adversarial examples in each batch')
+
     
     # DeepFool adversarial training command
     deepfool_adv_train_parser = subparsers.add_parser('deepfool_adv_train', help='Train the logistic regression model with DeepFool adversarial training')
@@ -134,6 +150,20 @@ def main():
                 else:
                     sys.argv.extend([f'--{key}', str(value)])
         deepfool_adv_train_main()
+
+    elif args.command == 'pgd_adv_train':
+        from scripts.run_pgd_adv_train import main as pgd_adv_train_main
+        # Run the PGD adversarial training script
+        sys.argv = ['run_pgd_adv_train.py']  # Reset sys.argv
+        pgd_adv_train_args = vars(args)
+        del pgd_adv_train_args['command']
+        for key, value in pgd_adv_train_args.items():
+            if value is not None:
+                if isinstance(value, bool) and value:
+                    sys.argv.append(f'--{key}')
+                else:
+                    sys.argv.extend([f'--{key}', str(value)])
+        pgd_adv_train_main()
         
     elif args.command == 'attack':
         from scripts.run_attacks import main as attack_main

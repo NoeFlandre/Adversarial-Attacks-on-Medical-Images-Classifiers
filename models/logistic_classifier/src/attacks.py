@@ -127,7 +127,83 @@ class FGSM:
         perturbed_images = torch.clamp(perturbed_images, 0, 1)
         
         return perturbed_images
-    
+
+class PGD:
+    """
+    Projected Gradient Descent (PGD) adversarial attack implementation.
+    """
+    def __init__(self, model, criterion=None, epsilon=0.1, alpha=0.01, num_iter=20, random_start=True):
+        """
+        Initialize PGD attack.
+        
+        Args:
+            model: The model to attack
+            criterion: Loss function (default: CrossEntropyLoss)
+            epsilon: Maximum perturbation (default: 0.1)
+            alpha: Step size for each iteration (default: 0.01)
+            num_iter: Number of attack iterations (default: 20)
+            random_start: Whether to start with a random perturbation (default: True)
+        """
+        self.model = model
+        self.criterion = criterion if criterion is not None else nn.CrossEntropyLoss()
+        self.epsilon = epsilon
+        self.alpha = alpha
+        self.num_iter = num_iter
+        self.random_start = random_start
+        
+    def generate(self, images, labels, targeted=False):
+        """
+        Generate adversarial examples using PGD.
+        
+        Args:
+            images: Input images tensor
+            labels: Ground truth labels
+            targeted: If True, perform targeted attack (default: False)
+            
+        Returns:
+            Adversarial examples
+        """
+        device = images.device
+        
+        # Create a copy of the original images
+        adv_images = images.clone().detach().to(device)
+        
+        # Start with random noise if specified
+        if self.random_start:
+            # Generate uniform random noise in [-epsilon, epsilon]
+            random_noise = torch.FloatTensor(images.shape).uniform_(-self.epsilon, self.epsilon).to(device)
+            # Add noise to the images and clip to valid range [0, 1]
+            adv_images = torch.clamp(adv_images + random_noise, 0, 1)
+        
+        # Iterative attack
+        for _ in range(self.num_iter):
+            # Set requires_grad for images
+            adv_images.requires_grad = True
+            
+            # Forward pass
+            outputs = self.model(adv_images)
+            
+            # Calculate loss
+            if targeted:
+                # For targeted attack, minimize loss w.r.t. target
+                cost = -self.criterion(outputs, labels)
+            else:
+                # For untargeted attack, maximize loss w.r.t. true label
+                cost = self.criterion(outputs, labels)
+            
+            # Backward pass
+            self.model.zero_grad()
+            cost.backward()
+            
+            # Update adversarial images with gradient step
+            grad_sign = adv_images.grad.data.sign()
+            adv_images = adv_images.detach() + self.alpha * grad_sign
+            
+            # Project back to epsilon ball around original images
+            delta = torch.clamp(adv_images - images, -self.epsilon, self.epsilon)
+            adv_images = torch.clamp(images + delta, 0, 1)
+        
+        return adv_images   
 
 def evaluate_attack(model, dataset, attack, batch_size=64, device='cpu', logger=None, save_results=True):
     """
